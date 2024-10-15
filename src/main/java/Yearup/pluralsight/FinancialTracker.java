@@ -1,9 +1,11 @@
 package Yearup.pluralsight;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
 
 public class FinancialTracker
 {
@@ -31,7 +33,8 @@ public class FinancialTracker
 
             String input = scanner.nextLine().trim();
 
-            switch (input.toUpperCase()) {
+            switch (input.toUpperCase())
+            {
                 case "D":
                     addDeposit(scanner);
                     break;
@@ -55,6 +58,41 @@ public class FinancialTracker
 
     public static void loadTransactions(String fileName)
     {
+        try
+        {
+            File file = new File(fileName);
+            String line;
+
+            if(!file.exists())
+            {
+                System.out.println("The file doesn't exist. Creating new file: " + fileName);
+                file.createNewFile();
+            }
+
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            while ((line = bufferedReader.readLine()) != null)
+            {
+                String[] tokens = line.split("\\|");
+                if (tokens.length == 5)
+                {
+                    LocalDate date = LocalDate.parse(tokens[0], DATE_FORMATTER);
+                    LocalTime time = LocalTime.parse(tokens[1], TIME_FORMATTER);
+                    String description = tokens[2];
+                    String vendor = tokens[3];
+                    double amount = Double.parseDouble(tokens[4]);
+
+                    transactions.add(new Transaction(date, time, description, vendor, amount));
+                }
+            }
+            bufferedReader.close();
+        } catch (IOException e)
+        {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+
         // This method should load transactions from a file with the given file name.
         // If the file does not exist, it should be created.
         // The transactions should be stored in the `transactions` ArrayList.
@@ -67,6 +105,7 @@ public class FinancialTracker
 
     private static void addDeposit(Scanner scanner)
     {
+
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a deposit.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
         // The amount should be a positive number.
