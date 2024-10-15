@@ -245,8 +245,8 @@ public class FinancialTracker
         }
 
         //Column Header
-        System.out.println("Date         | Time     | Description                    | Vendor          | Amount    ");
-        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("--------------------------------------------------------------------------------------------------");
 
         //Enhanced Loop to iterate through array
         for (Transaction transaction : transactions)
@@ -268,8 +268,8 @@ public class FinancialTracker
         boolean hasDeposits = false;
 
         //Column Header
-        System.out.println("Date         | Time     | Description                    | Vendor          | Amount    ");
-        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("--------------------------------------------------------------------------------------------------");
 
         //Enhanced Loop to iterate through array
         for (Transaction transaction : transactions)
@@ -301,8 +301,8 @@ public class FinancialTracker
         boolean hasPayments = false;
 
         //Column Header
-        System.out.println("Date         | Time     | Description                    | Vendor          | Amount    ");
-        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("--------------------------------------------------------------------------------------------------");
 
         //Enhanced Loop to iterate through array
         for (Transaction transaction : transactions)
@@ -356,7 +356,6 @@ public class FinancialTracker
                 case "3":
                     // Generate a report for all transactions within the current year,
                     // including the date, time, description, vendor, and amount for each transaction.
-
                 case "4":
                     // Generate a report for all transactions within the previous year,
                     // including the date, time, description, vendor, and amount for each transaction.
@@ -372,10 +371,34 @@ public class FinancialTracker
         }
     }
 
-
     private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate)
     {
+        boolean foundTransactions = false;
 
+        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("--------------------------------------------------------------------------------------------------");
+
+        for (Transaction transaction : transactions)
+        {
+            LocalDate transactionDate = transaction.getDate();
+
+            if (!transactionDate.isBefore(startDate) && !transactionDate.isAfter(endDate))
+            {
+                //Formatting Specifiers
+                System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+                        transaction.getDate(),
+                        transaction.getTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+                foundTransactions = true;
+            }
+        }
+
+        if (!foundTransactions)
+        {
+            System.out.println("No transactions found within the date range!");
+        }
         // This method filters the transactions by date and prints a report to the console.
         // It takes two parameters: startDate and endDate, which represent the range of dates to filter by.
         // The method loops through the transactions list and checks each transaction's date against the date range.
@@ -385,7 +408,30 @@ public class FinancialTracker
 
     private static void filterTransactionsByVendor(String vendor)
     {
+        boolean foundTransactions = false;
 
+        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("--------------------------------------------------------------------------------------------------");
+
+        for (Transaction transaction : transactions)
+        {
+            if (transaction.getVendor().equalsIgnoreCase(vendor))
+            {
+                // Formating Specifiers
+                System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+                        transaction.getDate(),
+                        transaction.getTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+                foundTransactions = true;
+            }
+        }
+
+        if (!foundTransactions)
+        {
+            System.out.println("No transactions found within the date range!");
+        }
         // This method filters the transactions by vendor and prints a report to the console.
         // It takes one parameter: vendor, which represents the name of the vendor to filter by.
         // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.

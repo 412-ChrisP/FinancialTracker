@@ -70,4 +70,3 @@ public class Transaction
                 "Amount: " + amount + "\n";
     }
 }
-
