@@ -105,6 +105,42 @@ public class FinancialTracker
 
     private static void addDeposit(Scanner scanner)
     {
+        try
+        {
+            System.out.println("Please enter the date: (yyyy-MM-dd)");
+            String dateInput = scanner.nextLine().trim();
+            LocalDate date = LocalDate.parse(dateInput, DATE_FORMATTER);
+
+            System.out.println("Please enter the time: (HH:mm:ss)");
+            String timeInput = scanner.nextLine().trim();
+            LocalTime time = LocalTime.parse(timeInput, TIME_FORMATTER);
+
+            System.out.println("Please enter the description: ");
+            String descriptionInput = scanner.nextLine().trim();
+
+            System.out.println("Please enter the vendor: ");
+            String vendorInput = scanner.nextLine().trim();
+
+            System.out.println("Please enter the amount: ");
+            double amountInput = scanner.nextDouble();
+            scanner.nextLine();
+
+            if(amountInput <= 0)
+            {
+                System.out.println("The amount must be positive!");
+                return;
+            }
+
+            Transaction newDeposit = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
+            transactions.add(newDeposit);
+
+            System.out.println("New deposit has been added: " + newDeposit);
+
+        }catch(Exception e)
+        {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
 
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a deposit.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
@@ -115,6 +151,45 @@ public class FinancialTracker
 
     private static void addPayment(Scanner scanner)
     {
+        try
+        {
+            System.out.println("Please enter the date: (yyyy-MM-dd)");
+            String dateInput = scanner.nextLine().trim();
+            LocalDate date = LocalDate.parse(dateInput, DATE_FORMATTER);
+
+            System.out.println("Please enter the time: (HH:mm:ss)");
+            String timeInput = scanner.nextLine().trim();
+            LocalTime time = LocalTime.parse(timeInput, TIME_FORMATTER);
+
+            System.out.println("Please enter the description: ");
+            String descriptionInput = scanner.nextLine().trim();
+
+            System.out.println("Please enter the vendor: ");
+            String vendorInput = scanner.nextLine().trim();
+
+            System.out.println("Please enter the amount: ");
+            double amountInput = scanner.nextDouble();
+            scanner.nextLine();
+
+            if(amountInput <= 0)
+            {
+                System.out.println("The amount must be positive!");
+                return;
+            }
+
+            amountInput = amountInput * -1;
+
+            Transaction newPayment = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
+            transactions.add(newPayment);
+
+            System.out.println("New deposit has been added: " + newPayment);
+
+        }catch(Exception e)
+        {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
         // The amount received should be a positive number then transformed to a negative number.
