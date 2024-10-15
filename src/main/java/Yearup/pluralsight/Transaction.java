@@ -63,7 +63,11 @@ public class Transaction
     @Override
     public String toString()
     {
-        return "Date: " + date + "| Time: " + time + "| Description: " + description + "| Vendor: " + vendor + "| Amount: " + amount;
+        return "Date: " + date + "\n" +
+                "Time: " + time + "\n" +
+                "Description: " + description + "\n" +
+                "Vendor: " + vendor + "\n" +
+                "Amount: " + amount + "\n";
     }
 }
 

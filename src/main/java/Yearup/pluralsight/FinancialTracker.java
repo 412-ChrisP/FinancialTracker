@@ -200,7 +200,8 @@ public class FinancialTracker
     private static void ledgerMenu(Scanner scanner)
     {
         boolean running = true;
-        while (running) {
+        while (running)
+        {
             System.out.println("Ledger");
             System.out.println("Choose an option:");
             System.out.println("A) A`ll");
@@ -236,18 +237,94 @@ public class FinancialTracker
 
     private static void displayLedger()
     {
+        //Check if transactions is empty
+        if (transactions.isEmpty())
+        {
+            System.out.println("No transactions available.");
+            return;
+        }
+
+        //Column Header
+        System.out.println("Date         | Time     | Description                    | Vendor          | Amount    ");
+        System.out.println("----------------------------------------------------------------------------------------");
+
+        //Enhanced Loop to iterate through array
+        for (Transaction transaction : transactions)
+        {
+            //Formatting specifiers
+            System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+                    transaction.getDate(),
+                    transaction.getTime(),
+                    transaction.getDescription(),
+                    transaction.getVendor(),
+                    transaction.getAmount());
+        }
         // This method should display a table of all transactions in the `transactions` ArrayList.
         // The table should have columns for date, time, description, vendor, and amount.
     }
 
     private static void displayDeposits()
     {
+        boolean hasDeposits = false;
+
+        //Column Header
+        System.out.println("Date         | Time     | Description                    | Vendor          | Amount    ");
+        System.out.println("----------------------------------------------------------------------------------------");
+
+        //Enhanced Loop to iterate through array
+        for (Transaction transaction : transactions)
+        {
+            if (transaction.getAmount() > 0)
+            {
+                //Formatting specifiers
+                System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+                        transaction.getDate(),
+                        transaction.getTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+                hasDeposits = true;
+            }
+        }
+
+        //Check if deposits is empty
+        if (!hasDeposits)
+        {
+            System.out.println("No payments available.");
+        }
         // This method should display a table of all deposits in the `transactions` ArrayList.
         // The table should have columns for date, time, description, vendor, and amount.
     }
 
     private static void displayPayments()
     {
+        boolean hasPayments = false;
+
+        //Column Header
+        System.out.println("Date         | Time     | Description                    | Vendor          | Amount    ");
+        System.out.println("----------------------------------------------------------------------------------------");
+
+        //Enhanced Loop to iterate through array
+        for (Transaction transaction : transactions)
+        {
+            if (transaction.getAmount() < 0)
+            {
+                //Formatting specifiers
+                System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+                        transaction.getDate(),
+                        transaction.getTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+                hasPayments = true;
+            }
+
+            //Check if payments is empty
+            if (!hasPayments)
+            {
+                System.out.println("No payments available.");
+            }
+        }
         // This method should display a table of all payments in the `transactions` ArrayList.
         // The table should have columns for date, time, description, vendor, and amount.
     }
@@ -298,6 +375,7 @@ public class FinancialTracker
 
     private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate)
     {
+
         // This method filters the transactions by date and prints a report to the console.
         // It takes two parameters: startDate and endDate, which represent the range of dates to filter by.
         // The method loops through the transactions list and checks each transaction's date against the date range.
@@ -307,6 +385,7 @@ public class FinancialTracker
 
     private static void filterTransactionsByVendor(String vendor)
     {
+
         // This method filters the transactions by vendor and prints a report to the console.
         // It takes one parameter: vendor, which represents the name of the vendor to filter by.
         // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
