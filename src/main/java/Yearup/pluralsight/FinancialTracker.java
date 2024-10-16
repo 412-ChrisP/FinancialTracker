@@ -134,26 +134,8 @@ public class FinancialTracker
             Transaction newDeposit = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
             transactions.add(newDeposit);
 
-            try
-            {
-                FileWriter fileWriter = new FileWriter(FILE_NAME, true);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                String line = String.format("%s|%s|%s|%s|%.2f",
-                        newDeposit.getDate().format(DATE_FORMATTER),
-                        newDeposit.getTime().format(TIME_FORMATTER),
-                        newDeposit.getDescription(),
-                        newDeposit.getVendor(),
-                        newDeposit.getAmount());
-                bufferedWriter.write(line);
-                bufferedWriter.newLine();
+            saveTransaction(newDeposit);
 
-                System.out.println("New deposit has been added: " + newDeposit);
-            }
-            catch(Exception e)
-            {
-                System.out.println("Error: " + e.getMessage());
-                e.printStackTrace();
-            }
         }catch(Exception e)
         {
             System.out.println("Error: " + e.getMessage());
@@ -199,26 +181,8 @@ public class FinancialTracker
             Transaction newPayment = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
             transactions.add(newPayment);
 
-            try
-            {
-                FileWriter fileWriter = new FileWriter(FILE_NAME, true);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                String line = String.format("%s|%s|%s|%s|%.2f",
-                        newPayment.getDate().format(DATE_FORMATTER),
-                        newPayment.getTime().format(TIME_FORMATTER),
-                        newPayment.getDescription(),
-                        newPayment.getVendor(),
-                        newPayment.getAmount());
-                bufferedWriter.write(line);
-                bufferedWriter.newLine();
+            saveTransaction(newPayment);
 
-                System.out.println("New deposit has been added: " + newPayment);
-            }
-            catch(Exception e)
-            {
-                System.out.println("Error: " + e.getMessage());
-                e.printStackTrace();
-            }
         }
         catch(Exception e)
         {
@@ -491,5 +455,29 @@ public class FinancialTracker
         // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
         // Transactions with a matching vendor name are printed to the console.
         // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
+    }
+
+    private static void saveTransaction(Transaction transaction)
+    {
+        try
+        {
+            FileWriter fileWriter = new FileWriter(FILE_NAME, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            String line = String.format("%s|%s|%s|%s|%.2f",
+                    transaction.getDate().format(DATE_FORMATTER),
+                    transaction.getTime().format(TIME_FORMATTER),
+                    transaction.getDescription(),
+                    transaction.getVendor(),
+                    transaction.getAmount());
+            bufferedWriter.write(line);
+            bufferedWriter.newLine();
+
+            System.out.println("New deposit has been added: " + transaction);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
