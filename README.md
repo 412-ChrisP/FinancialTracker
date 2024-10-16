@@ -1,5 +1,5 @@
 # FinancialTracker
-# A Financial Management Application
+## A Financial Management Application
 
 ## Description of the Project
 
