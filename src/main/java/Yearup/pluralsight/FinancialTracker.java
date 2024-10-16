@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
+import java.io.FileWriter;
 
 public class FinancialTracker
 {
@@ -134,13 +135,32 @@ public class FinancialTracker
             Transaction newDeposit = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
             transactions.add(newDeposit);
 
-            System.out.println("New deposit has been added: " + newDeposit);
+            try (FileWriter fileWriter = new FileWriter(FILE_NAME, true); // true for append mode
+                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter))
+            {
+                String line = String.format("%s|%s|%s|%s|%.2f",
+                        newDeposit.getDate().format(DATE_FORMATTER),
+                        newDeposit.getTime().format(TIME_FORMATTER),
+                        newDeposit.getDescription(),
+                        newDeposit.getVendor(),
+                        newDeposit.getAmount());
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
 
+                System.out.println("New deposit has been added: " + newDeposit);
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
         }catch(Exception e)
         {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
+
+
 
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a deposit.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
@@ -182,14 +202,31 @@ public class FinancialTracker
             Transaction newPayment = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
             transactions.add(newPayment);
 
-            System.out.println("New deposit has been added: " + newPayment);
+            try (FileWriter fileWriter = new FileWriter(FILE_NAME, true);
+                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter))
+            {
+                String line = String.format("%s|%s|%s|%s|%.2f",
+                        newPayment.getDate().format(DATE_FORMATTER),
+                        newPayment.getTime().format(TIME_FORMATTER),
+                        newPayment.getDescription(),
+                        newPayment.getVendor(),
+                        newPayment.getAmount());
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
 
-        }catch(Exception e)
+                System.out.println("New deposit has been added: " + newPayment);
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+        catch(Exception e)
         {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
-
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
         // The amount received should be a positive number then transformed to a negative number.
