@@ -1,18 +1,24 @@
 # FinancialTracker
-# Project Title
+# A Financial Management Application
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+FinancialTracker is a Java-based console application designed to help users manage their personal finances efficiently. 
+It allows users to input, track, and analyze their financial transactions. 
+The application helps users track expenses, view reports, and helps better control their finances.
 
-![Class Diagram](path/to/your/class_diagram.png)
+Main features include:
+
+- Recording daily financial transactions
+- Sorting and filtering transactions by date, vendor, or category
+- Generating financial summaries and reports for specific periods
 
 ## User Stories
 
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
-
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a user, I want to input my transactions to track my income and expenses.
+- As a user, I want to filter transactions by date so that I can view my financial activity within a specific period.
+- As a user, I want to view specific reports to analyze my spending habits.
+- As a user, I want to save my transaction data so I can reference them later.
 
 ## Setup
 
@@ -36,36 +42,41 @@ Follow these steps to get your application running within IntelliJ IDEA:
 ## Technologies Used
 
 - Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- import java.time.LocalDate;
+- import java.time.LocalTime;
+- import java.time.format.DateTimeFormatter;
+- import java.util.ArrayList;
+- import java.util.Scanner;
+- import java.io.*;
+- import java.io.FileWriter;
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
-
-![Application Screenshot](path/to/your/screenshot.png)
+![Application Screenshot](C:\Users\thebe\OneDrive - Year Up- BOS\IntelliJ YearUp\CapStones\FinacialTracker\Screenshot
+2024-10-16 152105.gif)
+![Application Screenshot]
+![Application Screenshot]
+![Application Screenshot]
+![Application Screenshot]
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
-
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Custom search feature
+- User accounts (usernames/passwords)
+- Allow api integration with banks
 
 ## Resources
 
-List resources such as tutorials, articles, or documentation that helped you during the project.
-
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+- https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html
+- https://www.tutorialspoint.com/how-to-write-data-to-csv-file-in-java
+- https://stackoverflow.com/questions/5046771/how-to-get-todays-date
+- https://stackoverflow.com/questions/26576909/how-to-format-string-output-so-that-columns-are-evenly-centered
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- **Chris Pham** - Project developer
 
 ## Thanks
 
-Express gratitude towards those who provided help, guidance, or resources:
-
-- Thank you to [Mentor's Name] for continuous support and guidance.
+- Thank you to [Raymond maroun] for continuous support and guidance.
 - A special thanks to all teammates for their dedication and teamwork.
