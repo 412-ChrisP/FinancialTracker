@@ -93,7 +93,6 @@ public class FinancialTracker
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
-
         // This method should load transactions from a file with the given file name.
         // If the file does not exist, it should be created.
         // The transactions should be stored in the `transactions` ArrayList.
@@ -135,9 +134,10 @@ public class FinancialTracker
             Transaction newDeposit = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
             transactions.add(newDeposit);
 
-            try (FileWriter fileWriter = new FileWriter(FILE_NAME, true); // true for append mode
-                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter))
+            try
             {
+                FileWriter fileWriter = new FileWriter(FILE_NAME, true);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
                 String line = String.format("%s|%s|%s|%s|%.2f",
                         newDeposit.getDate().format(DATE_FORMATTER),
                         newDeposit.getTime().format(TIME_FORMATTER),
@@ -159,9 +159,6 @@ public class FinancialTracker
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
-
-
-
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a deposit.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
         // The amount should be a positive number.
@@ -202,9 +199,10 @@ public class FinancialTracker
             Transaction newPayment = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
             transactions.add(newPayment);
 
-            try (FileWriter fileWriter = new FileWriter(FILE_NAME, true);
-                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter))
+            try
             {
+                FileWriter fileWriter = new FileWriter(FILE_NAME, true);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
                 String line = String.format("%s|%s|%s|%s|%.2f",
                         newPayment.getDate().format(DATE_FORMATTER),
                         newPayment.getTime().format(TIME_FORMATTER),
@@ -282,14 +280,14 @@ public class FinancialTracker
         }
 
         //Column Header
-        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
         //Enhanced Loop to iterate through array
         for (Transaction transaction : transactions)
         {
             //Formatting specifiers
-            System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+            System.out.printf("%-10s | %-8s | %-30s | %-25s | %-10.2f%n",
                     transaction.getDate(),
                     transaction.getTime(),
                     transaction.getDescription(),
