@@ -52,12 +52,11 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-![Application Screenshot](C:\Users\thebe\OneDrive - Year Up- BOS\IntelliJ YearUp\CapStones\FinacialTracker\Screenshot
-2024-10-16 152105.gif)
-![Application Screenshot]
-![Application Screenshot]
-![Application Screenshot]
-![Application Screenshot]
+![Screenshot 2024-10-16 152105.gif](Screenshot%202024-10-16%20152105.gif)
+![Screenshot 2024-10-16 152311.gif](Screenshot%202024-10-16%20152311.gif)
+![Screenshot 2024-10-16 152345.gif](Screenshot%202024-10-16%20152345.gif)
+![Screenshot 2024-10-16 152402.gif](Screenshot%202024-10-16%20152402.gif)
+![Screenshot 2024-10-16 152426.gif](Screenshot%202024-10-16%20152426.gif)
 
 ## Future Work
 

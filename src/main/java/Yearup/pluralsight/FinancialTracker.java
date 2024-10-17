@@ -267,7 +267,7 @@ public class FinancialTracker
         boolean hasDeposits = false;
 
         //Column Header
-        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
         //Enhanced Loop to iterate through array
@@ -276,7 +276,7 @@ public class FinancialTracker
             if (transaction.getAmount() > 0)
             {
                 //Formatting specifiers
-                System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+                System.out.printf("%-10s | %-8s | %-30s | %-25s | %-10.2f%n",
                         transaction.getDate(),
                         transaction.getTime(),
                         transaction.getDescription(),
@@ -300,7 +300,7 @@ public class FinancialTracker
         boolean hasPayments = false;
 
         //Column Header
-        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
         //Enhanced Loop to iterate through array
@@ -309,7 +309,7 @@ public class FinancialTracker
             if (transaction.getAmount() < 0)
             {
                 //Formatting specifiers
-                System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+                System.out.printf("%-10s | %-8s | %-30s | %-25s | %-10.2f%n",
                         transaction.getDate(),
                         transaction.getTime(),
                         transaction.getDescription(),
@@ -393,7 +393,7 @@ public class FinancialTracker
     {
         boolean foundTransactions = false;
 
-        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
         for (Transaction transaction : transactions)
@@ -403,7 +403,7 @@ public class FinancialTracker
             if (!transactionDate.isBefore(startDate) && !transactionDate.isAfter(endDate))
             {
                 //Formatting Specifiers
-                System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+                System.out.printf("%-10s | %-8s | %-30s | %-25s | %-10.2f%n",
                         transaction.getDate(),
                         transaction.getTime(),
                         transaction.getDescription(),
@@ -428,7 +428,7 @@ public class FinancialTracker
     {
         boolean foundTransactions = false;
 
-        System.out.println("Date         | Time     | Description                    | Vendor                    | Amount    ");
+        System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
         for (Transaction transaction : transactions)
@@ -436,7 +436,7 @@ public class FinancialTracker
             if (transaction.getVendor().equalsIgnoreCase(vendor))
             {
                 // Formating Specifiers
-                System.out.printf("%-12s | %-8s | %-30s | %-25s | %-10.2f%n",
+                System.out.printf("%-10s | %-8s | %-30s | %-25s | %-10.2f%n",
                         transaction.getDate(),
                         transaction.getTime(),
                         transaction.getDescription(),
