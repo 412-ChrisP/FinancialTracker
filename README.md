@@ -1,7 +1,8 @@
 # FinancialTracker
 ## A Financial Management Application
 
-## Description of the Project
+## Description 
+of the Project
 
 FinancialTracker is a Java-based console application designed to help users manage their personal finances efficiently. 
 It allows users to input, track, and analyze their financial transactions. 
@@ -52,11 +53,11 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-![Screenshot 2024-10-16 152105.gif](Screenshot%202024-10-16%20152105.gif)
-![Screenshot 2024-10-16 152311.gif](Screenshot%202024-10-16%20152311.gif)
-![Screenshot 2024-10-16 152345.gif](Screenshot%202024-10-16%20152345.gif)
-![Screenshot 2024-10-16 152402.gif](Screenshot%202024-10-16%20152402.gif)
-![Screenshot 2024-10-16 152426.gif](Screenshot%202024-10-16%20152426.gif)
+<img alt="Screenshot 2024-10-16 152105.gif" src="Screenshot%202024-10-16%20152105.gif"/>
+<img alt="Screenshot 2024-10-16 152311.gif" src="Screenshot%202024-10-16%20152311.gif"/>
+<img alt="Screenshot 2024-10-16 152345.gif" src="Screenshot%202024-10-16%20152345.gif"/>
+<img alt="Screenshot 2024-10-16 152402.gif" src="Screenshot%202024-10-16%20152402.gif"/>
+<img alt="Screenshot 2024-10-16 152426.gif" src="Screenshot%202024-10-16%20152426.gif"/>
 
 ## Future Work
 
