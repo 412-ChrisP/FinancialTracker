@@ -133,7 +133,7 @@ public class FinancialTracker
                 System.out.println("The amount must be positive!");
                 return;
             }
-            //Creating new object
+            //Creating new transaction object
             Transaction newDeposit = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
             // Add the newDeposit to the list of transactions
             transactions.add(newDeposit);
@@ -175,11 +175,6 @@ public class FinancialTracker
             double amountInput = scanner.nextDouble();
             scanner.nextLine();
 
-            if(amountInput <= 0)
-            {
-                System.out.println("The amount must be Negative!");
-                return;
-            }
             //Changing amount to negative
             amountInput = amountInput * -1;
             //Creating new transaction object
