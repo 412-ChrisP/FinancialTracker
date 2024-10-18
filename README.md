@@ -1,8 +1,7 @@
 # FinancialTracker
 ## A Financial Management Application
 
-## Description 
-of the Project
+## Description of the Project
 
 FinancialTracker is a Java-based console application designed to help users manage their personal finances efficiently. 
 It allows users to input, track, and analyze their financial transactions. 
@@ -42,7 +41,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
+- Java: Intellij IDEA community edition 2024.2.3
 - import java.time.LocalDate;
 - import java.time.LocalTime;
 - import java.time.format.DateTimeFormatter;
