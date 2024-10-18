@@ -76,6 +76,7 @@ public class FinancialTracker
             while ((line = bufferedReader.readLine()) != null)
             {
                 String[] tokens = line.split("\\|");
+                //Check transactions.csv for 5 data inputs
                 if (tokens.length == 5)
                 {
                     LocalDate date = LocalDate.parse(tokens[0], DATE_FORMATTER);
@@ -87,6 +88,7 @@ public class FinancialTracker
                     transactions.add(new Transaction(date, time, description, vendor, amount));
                 }
             }
+            //close bufferReader to prevent data leak
             bufferedReader.close();
         } catch (IOException e)
         {
@@ -107,6 +109,7 @@ public class FinancialTracker
     {
         try
         {
+            //Ask user for inputs
             System.out.println("Please enter the date: (yyyy-MM-dd)");
             String dateInput = scanner.nextLine().trim();
             LocalDate date = LocalDate.parse(dateInput, DATE_FORMATTER);
@@ -124,16 +127,17 @@ public class FinancialTracker
             System.out.println("Please enter the amount: ");
             double amountInput = scanner.nextDouble();
             scanner.nextLine();
-
+            //Check amount for positive #
             if(amountInput <= 0)
             {
                 System.out.println("The amount must be positive!");
                 return;
             }
-
+            //Creating new object
             Transaction newDeposit = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
+            // Add the newDeposit to the list of transactions
             transactions.add(newDeposit);
-
+            //Save to csv file via saveTransaction method
             saveTransaction(newDeposit);
 
         }catch(Exception e)
@@ -152,6 +156,7 @@ public class FinancialTracker
     {
         try
         {
+            //Ask user for input
             System.out.println("Please enter the date: (yyyy-MM-dd)");
             String dateInput = scanner.nextLine().trim();
             LocalDate date = LocalDate.parse(dateInput, DATE_FORMATTER);
@@ -172,17 +177,17 @@ public class FinancialTracker
 
             if(amountInput <= 0)
             {
-                System.out.println("The amount must be positive!");
+                System.out.println("The amount must be Negative!");
                 return;
             }
-
+            //Changing amount to negative
             amountInput = amountInput * -1;
-
+            //Creating new transaction object
             Transaction newPayment = new Transaction(date, time, descriptionInput, vendorInput, amountInput);
+            // Add the newPayment to the list of transactions
             transactions.add(newPayment);
-
+            //Saving newPayment via saveTransaction method
             saveTransaction(newPayment);
-
         }
         catch(Exception e)
         {
@@ -236,7 +241,7 @@ public class FinancialTracker
 
     private static void displayLedger()
     {
-        //Check if transactions is empty
+        //Check if transactions list is empty
         if (transactions.isEmpty())
         {
             System.out.println("No transactions available.");
@@ -247,7 +252,7 @@ public class FinancialTracker
         System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
-        //Enhanced Loop to iterate through array
+        //Enhanced Loop to iterate through each transaction
         for (Transaction transaction : transactions)
         {
             //Formatting specifiers
@@ -270,7 +275,7 @@ public class FinancialTracker
         System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
-        //Enhanced Loop to iterate through array
+        //Enhanced Loop to iterate through each transaction
         for (Transaction transaction : transactions)
         {
             if (transaction.getAmount() > 0)
@@ -289,7 +294,7 @@ public class FinancialTracker
         //Check if deposits is empty
         if (!hasDeposits)
         {
-            System.out.println("No payments available.");
+            System.out.println("No Deposits available.");
         }
         // This method should display a table of all deposits in the `transactions` ArrayList.
         // The table should have columns for date, time, description, vendor, and amount.
@@ -303,7 +308,7 @@ public class FinancialTracker
         System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
-        //Enhanced Loop to iterate through array
+        //Enhanced Loop to iterate through each transaction
         for (Transaction transaction : transactions)
         {
             if (transaction.getAmount() < 0)
@@ -321,7 +326,7 @@ public class FinancialTracker
             //Check if payments is empty
             if (!hasPayments)
             {
-                System.out.println("No payments available.");
+                System.out.println("No Payments available.");
             }
         }
         // This method should display a table of all payments in the `transactions` ArrayList.
@@ -393,13 +398,17 @@ public class FinancialTracker
     {
         boolean foundTransactions = false;
 
+        //Column Header
         System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
+        //Enhanced Loop to iterate through each transaction
         for (Transaction transaction : transactions)
         {
+            //Get transaction date and set = to transactionDate
             LocalDate transactionDate = transaction.getDate();
 
+            //Checking for transactionDate within specified range
             if (!transactionDate.isBefore(startDate) && !transactionDate.isAfter(endDate))
             {
                 //Formatting Specifiers
@@ -428,11 +437,14 @@ public class FinancialTracker
     {
         boolean foundTransactions = false;
 
+        //Column Header
         System.out.println("Date       | Time     | Description                    | Vendor                    | Amount    ");
         System.out.println("--------------------------------------------------------------------------------------------------");
 
+        //Enhanced Loop to iterate through each transaction
         for (Transaction transaction : transactions)
         {
+            //Checking if vendors match
             if (transaction.getVendor().equalsIgnoreCase(vendor))
             {
                 // Formating Specifiers
@@ -463,16 +475,21 @@ public class FinancialTracker
         {
             FileWriter fileWriter = new FileWriter(FILE_NAME, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            //Formatting transaction data
             String line = String.format("%s|%s|%s|%s|%.2f",
                     transaction.getDate().format(DATE_FORMATTER),
                     transaction.getTime().format(TIME_FORMATTER),
                     transaction.getDescription(),
                     transaction.getVendor(),
                     transaction.getAmount());
+            //writing data to transactions.csv
             bufferedWriter.write(line);
+            //add new line after writing to csv
             bufferedWriter.newLine();
+            //close bufferedReader to prevent data leak
+            bufferedWriter.close();
 
-            System.out.println("New deposit has been added: " + transaction);
+            System.out.println("New transaction has been added: " + transaction);
         }
         catch(Exception e)
         {
